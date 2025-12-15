@@ -1,0 +1,35 @@
+{
+  "name": "@repo/metrics",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Dynatrace metrics package for microfrontend architecture with strict TypeScript typing",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node build.mjs",
+    "typecheck": "tsc --noEmit",
+    "dev": "tsc --watch --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.62",
+    "esbuild": "^0.27.1",
+    "typescript": "^5.3.3"
+  }
+}
