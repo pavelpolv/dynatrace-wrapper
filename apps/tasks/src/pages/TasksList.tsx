@@ -15,16 +15,25 @@ export const TasksList: React.FC = () => {
     const fetchTasks = async () => {
       try {
         setLoading(true);
+        // Запускаем действие перед началом загрузки
+        metrics.startAction('LOAD_TASKS', 'xhr');
+
         const response = await apiClient.get<Task[]>('/todos');
         setTasks(response.data.slice(0, 20)); // Показываем первые 20 задач
         setError(null);
+
+        // Завершаем действие после успешной загрузки
+        metrics.leaveAction('LOAD_TASKS');
       } catch (err) {
         setError('Failed to load tasks');
-          metrics.reportError(err, 'LOAD_TASKS')
+        // Теперь parentActionId будет найден, т.к. действие LOAD_TASKS активно
+        metrics.reportError(err, 'LOAD_TASKS');
+
+          // Завершаем действие после ошибки
+        metrics.leaveAction('LOAD_TASKS');
         console.error(err);
       } finally {
         setLoading(false);
-        metrics.startAction('VIEW_TASKS', 'work');
       }
     };
 

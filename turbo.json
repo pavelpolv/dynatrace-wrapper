@@ -16,6 +16,22 @@
     },
     "clean": {
       "cache": false
+    },
+    "test": {
+      "cache": false,
+      "outputs": ["test-results/**", "playwright-report/**"]
+    },
+    "test:headed": {
+      "cache": false
+    },
+    "test:ui": {
+      "cache": false
+    },
+    "test:debug": {
+      "cache": false
+    },
+    "report": {
+      "cache": false
     }
   }
 }

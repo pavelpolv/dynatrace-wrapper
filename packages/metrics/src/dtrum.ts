@@ -16,21 +16,19 @@ import { DtrumApi } from './dtrum-types';
 export class DtrumWrapper {
   private static instance: DtrumWrapper;
   private debugMode: boolean = false;
-  private appName: string = 'unknown';
   private actionIdCounter: number = 1; // Счетчик для генерации фейковых actionId
 
-  private constructor(debugMode: boolean, appName: string) {
+  private constructor(debugMode: boolean) {
     this.debugMode = debugMode;
-    this.appName = appName;
-    this.logInfo('DtrumWrapper initialized', { debugMode, appName, dtrumAvailable: this.isDtrumAvailable() });
+    this.logInfo('DtrumWrapper initialized', { debugMode, dtrumAvailable: this.isDtrumAvailable() });
   }
 
   /**
    * Получить единственный экземпляр обёртки
    */
-  static getInstance(debugMode: boolean = false, appName: string = 'unknown'): DtrumWrapper {
+  static getInstance(debugMode: boolean = false): DtrumWrapper {
     if (!DtrumWrapper.instance) {
-      DtrumWrapper.instance = new DtrumWrapper(debugMode, appName);
+      DtrumWrapper.instance = new DtrumWrapper(debugMode);
     }
     return DtrumWrapper.instance;
   }
@@ -49,7 +47,7 @@ export class DtrumWrapper {
     if (this.debugMode) {
       const timestamp = new Date().toISOString();
       const prefix = this.isDtrumAvailable() ? '✓ DYNATRACE' : '⚠ FALLBACK';
-      console.group(`[${prefix}] [${this.appName}] ${eventType}`);
+      console.group(`[${prefix}] ${eventType}`);
       console.log(`⏰ ${timestamp}`);
       console.log(`📝 ${message}`);
       if (data) {
@@ -64,7 +62,7 @@ export class DtrumWrapper {
    */
   private logInfo(message: string, data?: any): void {
     if (this.debugMode) {
-      console.log(`[${this.appName}] ℹ️ ${message}`, data || '');
+      console.log(`ℹ️ ${message}`, data || '');
     }
   }
 
@@ -96,18 +94,17 @@ export class DtrumWrapper {
     sourceUrl?: string
   ): number {
     const dtrum = this.getDtrum();
-    const fullActionName = `${this.appName}:${actionName}`;
 
     if (dtrum) {
       try {
         const actionId = dtrum.enterAction(
-          fullActionName,
+          actionName,
           actionType,
           startTime,
           sourceUrl
         );
 
-        this.logEvent('ACTION_START', `Action started: ${fullActionName}`, {
+        this.logEvent('ACTION_START', `Action started: ${actionName}`, {
           actionId,
           actionType: actionType || 'custom',
           startTime,
@@ -116,13 +113,13 @@ export class DtrumWrapper {
 
         return actionId || this.actionIdCounter++;
       } catch (error) {
-        console.error(`[${this.appName}] Failed to enter action:`, error);
+        console.error(`Failed to enter action:`, error);
       }
     }
 
     // Fallback: генерируем фейковый actionId
     const fallbackActionId = this.actionIdCounter++;
-    this.logEvent('ACTION_START', `Action started (fallback mode): ${fullActionName}`, {
+    this.logEvent('ACTION_START', `Action started (fallback mode): ${actionName}`, {
       actionId: fallbackActionId,
       actionType: actionType || 'custom',
       startTime: startTime || Date.now(),
@@ -154,7 +151,7 @@ export class DtrumWrapper {
         });
         return;
       } catch (error) {
-        console.error(`[${this.appName}] Failed to leave action:`, error);
+        console.error(`Failed to leave action:`, error);
       }
     }
 
@@ -199,7 +196,7 @@ export class DtrumWrapper {
 
         return true;
       } catch (err) {
-        console.error(`[${this.appName}] Failed to report error:`, err);
+        console.error(`Failed to report error:`, err);
       }
     }
 
@@ -239,7 +236,7 @@ export class DtrumWrapper {
 
         return true;
       } catch (error) {
-        console.error(`[${this.appName}] Failed to identify user:`, error);
+        console.error(`Failed to identify user:`, error);
       }
     }
 
@@ -297,7 +294,7 @@ export class DtrumWrapper {
 
         return result.success;
       } catch (error) {
-        console.error(`[${this.appName}] Failed to add action properties:`, error);
+        console.error(`Failed to add action properties:`, error);
         return false;
       }
     }

@@ -12,7 +12,6 @@
  * import { MetricsManager } from '@repo/metrics';
  *
  * MetricsManager.initialize({
- *   appName: 'my-app',
  *   environment: 'dev',
  *   debugMode: true,
  * });

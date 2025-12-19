@@ -87,7 +87,9 @@ export const metrics = {
    * }
    */
   reportError(error: Error | string, eventName?: string): void {
-    const manager = getMetricsManager();
+      console.log('reportError /////////////')
+      const manager = getMetricsManager();
+
     if (manager) {
       manager.trackError(error, eventName);
     }

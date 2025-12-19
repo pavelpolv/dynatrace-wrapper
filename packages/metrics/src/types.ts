@@ -59,8 +59,6 @@ export enum EventType {
 export interface MetricsManagerConfig {
   /** Включить/отключить сбор метрик */
   enabled?: boolean;
-  /** Название приложения (обязательно) */
-  appName: string;
   /** Окружение */
   environment?: 'dev' | 'staging' | 'prod';
   /** Режим отладки (логирование в консоль) */

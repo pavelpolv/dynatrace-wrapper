@@ -15,7 +15,6 @@ export class MetricsManager {
   private static instance: MetricsManager;
   private dtrumWrapper: DtrumWrapper;
   private config: MetricsManagerConfig;
-  private appName: string;
   private isEnabled: boolean;
 
   // Хранилище активных действий: actionName -> { actionId, startTime }
@@ -23,9 +22,8 @@ export class MetricsManager {
 
   private constructor(config: MetricsManagerConfig) {
     this.config = config;
-    this.appName = config.appName;
     this.isEnabled = config.enabled !== false;
-    this.dtrumWrapper = DtrumWrapper.getInstance(config.debugMode || false, config.appName);
+    this.dtrumWrapper = DtrumWrapper.getInstance(config.debugMode || false);
   }
 
   /**
@@ -108,7 +106,7 @@ export class MetricsManager {
     // Проверяем, не запущено ли уже это действие
     if (this.activeActions.has(actionName)) {
       console.warn(
-        `[${this.appName}] Action "${actionName}" is already active. Skipping startAction.`
+        `Action "${actionName}" is already active. Skipping startAction.`
       );
       return;
     }
@@ -143,7 +141,7 @@ export class MetricsManager {
       });
     } else {
       console.warn(
-        `[${this.appName}] Cannot end action "${actionName}": action not found or not started`
+        `Cannot end action "${actionName}": action not found or not started`
       );
     }
   }
@@ -201,7 +199,7 @@ export class MetricsManager {
 
     if (!actionData) {
       console.warn(
-        `[${this.appName}] Cannot add properties to action "${actionName}": action not found or not started`
+        `Cannot add properties to action "${actionName}": action not found or not started`
       );
       return false;
     }
@@ -247,13 +245,24 @@ export class MetricsManager {
     // Создаем объект Error
     const errorObj = typeof error === 'string' ? new Error(error) : error;
 
+    // Автоматически определяем parentActionId из активного действия
+    // Если есть активное действие с именем eventName, используем его actionId
+    let parentActionId: number | undefined;
+    const actionData = this.activeActions.get(eventName);
+      console.log(actionData, '!!!!!!!')
+
+      if (actionData) {
+      parentActionId = actionData.actionId;
+    }
+
     // Логируем информацию об ошибке
     this.log(`Error tracked: ${eventName}`, {
       message: errorObj.message,
+      parentActionId,
     });
 
-    // Отправляем ошибку в Dynatrace
-    this.dtrumWrapper.reportError(errorObj, eventName);
+    // Отправляем ошибку в Dynatrace с parentActionId
+    this.dtrumWrapper.reportError(errorObj, eventName, parentActionId);
   }
 
 
@@ -292,7 +301,7 @@ export class MetricsManager {
    */
   private log(message: string, data?: any): void {
     if (this.config.debugMode) {
-      console.log(`[MetricsManager:${this.appName}] ${message}`, data || '');
+      console.log(`[MetricsManager] ${message}`, data || '');
     }
   }
 

@@ -12,7 +12,6 @@ const { Content } = Layout;
 
 // Инициализация метрик (один раз при старте приложения)
 MetricsManager.initialize({
-  appName: 'dynatrace-root',
   environment: 'dev',
   debugMode: true,  // Включить debug режим для отладки
   enabled: true,    // Метрики включены
@@ -32,7 +31,10 @@ const Sidebar = lazy(() => import('layout/Sidebar').then(module => ({ default: m
 const App: React.FC = () => {
   // Отследить загрузку root приложения
   React.useEffect(() => {
-    metricsManager.pageViewStart('RootApp');
+    metricsManager.startAction('LOAD_ROOT_APP', 'load');
+    return () => {
+      metricsManager.leaveAction('LOAD_ROOT_APP');
+    };
   }, []);
 
   return (
