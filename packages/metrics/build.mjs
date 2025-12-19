@@ -3,6 +3,7 @@
 import * as esbuild from 'esbuild';
 import { exec } from 'child_process';
 import { promisify } from 'util';
+import { rm } from 'fs/promises';
 
 const execAsync = promisify(exec);
 
@@ -12,7 +13,7 @@ async function build() {
   try {
     // 1. Очистка директории dist
     console.log('🧹 Очистка директории dist...');
-    await execAsync('rm -rf dist');
+    await rm('dist', { recursive: true, force: true });
     console.log('✅ Директория dist очищена\n');
 
     // 2. Сборка ESM бундла через esbuild
