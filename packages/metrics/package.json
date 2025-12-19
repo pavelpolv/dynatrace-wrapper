@@ -22,7 +22,7 @@
     "build": "node build.mjs",
     "typecheck": "tsc --noEmit",
     "dev": "tsc --watch --noEmit",
-    "clean": "rm -rf dist"
+    "clean": "rimraf dist"
   },
   "peerDependencies": {
     "react": "^17.0.2"
