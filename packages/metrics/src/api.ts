@@ -4,6 +4,7 @@
  */
 
 import { MetricsManager } from './manager';
+import { MetricsEventType } from './types';
 
 /**
  * Получить экземпляр MetricsManager
@@ -86,8 +87,7 @@ export const metrics = {
    *   metrics.reportError(error, 'PROCESS_PAYMENT');
    * }
    */
-  reportError(error: Error | string, eventName?: string): void {
-      console.log('reportError /////////////')
+  reportError(error: Error | string, eventName?: MetricsEventType): void {
       const manager = getMetricsManager();
 
     if (manager) {

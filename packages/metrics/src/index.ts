@@ -55,5 +55,8 @@ export type {
   CustomErrorEvent,
   PageLoadMetrics,
   MetricsManagerConfig,
-  EventType,
 } from './types';
+
+// Экспортируем MetricsEventType и как значение (const), и как тип
+export { MetricsEventType } from './types';
+export type { MetricsEventType as MetricsEventTypeValues } from './types';

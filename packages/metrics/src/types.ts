@@ -45,13 +45,24 @@ export interface PageLoadMetrics {
 /**
  * Типы событий
  */
-export enum EventType {
-  USER_ACTION = 'user-action',
-  CUSTOM_EVENT = 'custom-event',
-  ERROR = 'error',
-  PERFORMANCE = 'performance',
-  NAVIGATION = 'navigation',
-}
+export const MetricsEventType = {
+  // Общие категории событий
+  USER_ACTION: 'user-action',
+  CUSTOM_EVENT: 'custom-event',
+  ERROR: 'error',
+  PERFORMANCE: 'performance',
+  NAVIGATION: 'navigation',
+
+  // Специфичные события приложения
+  LOAD_ROOT_APP: 'LOAD_ROOT_APP',
+  LOAD_HEADER: 'LOAD_HEADER',
+  LOAD_SIDEBAR: 'LOAD_SIDEBAR',
+  LOAD_TASKS: 'LOAD_TASKS',
+  VIEW_TASKS: 'VIEW_TASKS',
+  LOAD_ORDERS: 'LOAD_ORDERS',
+} as const;
+
+export type MetricsEventType = typeof MetricsEventType[keyof typeof MetricsEventType];
 
 /**
  * Опции для инициализации менеджера метрик

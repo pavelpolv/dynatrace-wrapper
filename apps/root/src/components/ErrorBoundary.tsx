@@ -1,11 +1,11 @@
 import React, { Component, ReactNode, Suspense } from 'react';
 import { Result, Spin } from 'antd';
-import { metrics } from '@repo/metrics';
+import { metrics, MetricsEventType } from '@repo/metrics';
 
 interface Props {
   children: ReactNode;
   fallback?: ReactNode;
-  actionName?: string;
+  actionName?: MetricsEventType;
 }
 
 interface State {
@@ -30,7 +30,7 @@ class ErrorBoundary extends Component<Props, State> {
     console.error('Action name:', actionName);
 
     // Отправка ошибки в метрики
-    metrics.reportError(error, actionName || 'ErrorBoundary');
+    metrics.reportError(error, actionName || MetricsEventType.ERROR);
   }
 
   render() {

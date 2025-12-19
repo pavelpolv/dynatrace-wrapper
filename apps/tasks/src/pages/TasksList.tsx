@@ -3,7 +3,7 @@ import { Table, Spin, Alert, Button, Tag } from 'antd';
 import { useHistory } from 'react-router-dom';
 import { apiClient, Task } from '@repo/shared';
 import 'antd/dist/antd.css';
-import { metrics } from "@repo/metrics";
+import { metrics, MetricsEventType } from "@repo/metrics";
 
 export const TasksList: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -16,21 +16,21 @@ export const TasksList: React.FC = () => {
       try {
         setLoading(true);
         // Запускаем действие перед началом загрузки
-        metrics.startAction('LOAD_TASKS', 'xhr');
+        metrics.startAction(MetricsEventType.LOAD_TASKS, 'xhr');
 
         const response = await apiClient.get<Task[]>('/todos');
         setTasks(response.data.slice(0, 20)); // Показываем первые 20 задач
         setError(null);
 
         // Завершаем действие после успешной загрузки
-        metrics.leaveAction('LOAD_TASKS');
+        metrics.leaveAction(MetricsEventType.LOAD_TASKS);
       } catch (err) {
         setError('Failed to load tasks');
         // Теперь parentActionId будет найден, т.к. действие LOAD_TASKS активно
-        metrics.reportError(err, 'LOAD_TASKS');
+        metrics.reportError(err, MetricsEventType.LOAD_TASKS);
 
           // Завершаем действие после ошибки
-        metrics.leaveAction('LOAD_TASKS');
+        metrics.leaveAction(MetricsEventType.LOAD_TASKS);
         console.error(err);
       } finally {
         setLoading(false);

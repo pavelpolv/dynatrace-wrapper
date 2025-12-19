@@ -4,7 +4,7 @@
  */
 
 import { DtrumWrapper } from './dtrum';
-import { MetricsManagerConfig } from './types';
+import { MetricsManagerConfig, MetricsEventType } from './types';
 
 /**
  * Менеджер метрик
@@ -239,7 +239,7 @@ export class MetricsManager {
    * @param error - Объект ошибки или строка
    * @param eventName - Название события (опционально, по умолчанию 'error')
    */
-  trackError(error: Error | string, eventName: string = 'error'): void {
+  trackError(error: Error | string, eventName: MetricsEventType = MetricsEventType.ERROR): void {
     if (!this.isEnabled) return;
 
     // Создаем объект Error

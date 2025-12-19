@@ -1,5 +1,5 @@
 import React, { lazy, useEffect } from 'react';
-import { MetricsManager } from '@repo/metrics';
+import { MetricsManager, MetricsEventType } from '@repo/metrics';
 import ErrorBoundary from '../components/ErrorBoundary';
 
 // Обычный lazy импорт
@@ -10,18 +10,18 @@ export const TasksPage: React.FC = () => {
 
   useEffect(() => {
     // Начало события LOAD_TASKS
-    metrics.startAction('LOAD_TASKS', 'load');
+    metrics.startAction(MetricsEventType.LOAD_TASKS, 'load');
 
     return () => {
       // Очистка при размонтировании (опционально)
-      if (metrics.isActionActive('VIEW_TASKS')) {
-        metrics.leaveAction('VIEW_TASKS');
+      if (metrics.isActionActive(MetricsEventType.VIEW_TASKS)) {
+        metrics.leaveAction(MetricsEventType.VIEW_TASKS);
       }
     };
   }, [metrics]);
 
   return (
-    <ErrorBoundary actionName="LOAD_TASKS">
+    <ErrorBoundary actionName={MetricsEventType.LOAD_TASKS}>
       <TasksRoutes />
     </ErrorBoundary>
   );

@@ -7,6 +7,7 @@
  */
 
 import { DtrumApi } from './dtrum-types';
+import { MetricsEventType } from './types';
 
 /**
  * Обёртка для Dynatrace dtrum API
@@ -177,7 +178,7 @@ export class DtrumWrapper {
    * @param parentActionId - ID родительского действия (опционально)
    * @returns true если ошибка успешно отправлена
    */
-  reportError(error: Error | string, eventName: string, parentActionId?: number): boolean {
+  reportError(error: Error | string, eventName: MetricsEventType, parentActionId?: number): boolean {
     const dtrum = this.getDtrum();
 
     if (dtrum) {
