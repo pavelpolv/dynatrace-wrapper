@@ -21,7 +21,7 @@ identifyUser(value: string): void
 ### 1. Через объект metrics (рекомендуется)
 
 ```typescript
-import { metrics } from '@repo/metrics';
+import { metrics } from '@farzoom/metrics-front-lib';
 
 // С ID пользователя
 metrics.identifyUser("user123");
@@ -36,7 +36,7 @@ metrics.identifyUser("john_doe");
 ### 2. Через утилитную функцию
 
 ```typescript
-import { identifyUser } from '@repo/metrics';
+import { identifyUser } from '@farzoom/metrics-front-lib';
 
 // После авторизации пользователя
 function onUserLogin(user) {
@@ -56,7 +56,7 @@ function UserProfile({ userId }) {
 ### Идентификация при авторизации
 
 ```typescript
-import { metrics } from '@repo/metrics';
+import { metrics } from '@farzoom/metrics-front-lib';
 
 async function handleLogin(email: string, password: string) {
   try {
@@ -77,7 +77,7 @@ async function handleLogin(email: string, password: string) {
 
 ```typescript
 import React, { useEffect } from 'react';
-import { metrics } from '@repo/metrics';
+import { metrics } from '@farzoom/metrics-front-lib';
 
 function App() {
   const user = useAuth(); // Ваш хук авторизации
@@ -96,7 +96,7 @@ function App() {
 ### Идентификация в микрофронтенде
 
 ```typescript
-import { metrics } from '@repo/metrics';
+import { metrics } from '@farzoom/metrics-front-lib';
 
 // В root приложении при инициализации
 function initializeApp() {
@@ -125,7 +125,7 @@ function RemoteApp() {
 ### Идентификация при переключении пользователей
 
 ```typescript
-import { metrics } from '@repo/metrics';
+import { metrics } from '@farzoom/metrics-front-lib';
 
 function switchUser(newUserId: string) {
   // Меняем пользователя

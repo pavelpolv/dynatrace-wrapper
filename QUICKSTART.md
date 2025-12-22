@@ -77,4 +77,4 @@ npm install
 - **layout** - remote с компонентами Header и Sidebar
 - **tasks** - remote с роутами для задач
 - **order** - remote с роутами для заказов
-- **@repo/shared** - общий пакет с типами и API клиентом
+- **@farzoom/shared** - общий пакет с типами и API клиентом

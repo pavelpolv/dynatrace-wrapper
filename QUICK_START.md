@@ -166,7 +166,7 @@ Webpack загружает файл
 ### В любом месте приложения
 
 ```typescript
-import { metrics } from '@repo/metrics';
+import { metrics } from '@farzoom/metrics-front-lib';
 
 // Начать действие
 metrics.startAction('LOAD_DATA', 'xhr');
@@ -184,7 +184,7 @@ try {
 
 ```typescript
 import { useEffect } from 'react';
-import { metrics } from '@repo/metrics';
+import { metrics } from '@farzoom/metrics-front-lib';
 
 export const MyComponent = () => {
   useEffect(() => {

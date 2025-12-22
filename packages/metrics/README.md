@@ -1,6 +1,6 @@
-# @repo/metrics
+# @farzoom/metrics-front-lib
 
-> Типобезопасная обёртка над Dynatrace RUM API для микрофронтенд архитектуры
+> Типобезопасная библиотека для работы с метриками в микрофронтенд архитектуре
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
 [![ESM](https://img.shields.io/badge/ESM-Ready-brightgreen.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
@@ -19,7 +19,7 @@
 ### Через npm
 
 \`\`\`bash
-npm install @repo/metrics
+npm install @farzoom/metrics
 \`\`\`
 
 ### Через Import Map
@@ -28,7 +28,7 @@ npm install @repo/metrics
 <script type="importmap">
   {
     "imports": {
-      "@repo/metrics": "https://esm.sh/@repo/metrics@0.3.0"
+      "@farzoom/metrics-front-lib": "https://esm.sh/@farzoom/metrics@0.3.0"
     }
   }
 </script>
@@ -39,7 +39,7 @@ npm install @repo/metrics
 ### 1. Инициализация (в root приложении)
 
 \`\`\`typescript
-import { MetricsManager } from '@repo/metrics';
+import { MetricsManager } from '@farzoom/metrics-front-lib';
 
 MetricsManager.initialize({
   appName: 'my-app',
@@ -51,7 +51,7 @@ MetricsManager.initialize({
 ### 2. Использование в любом микрофронтенде
 
 \`\`\`typescript
-import { metrics } from '@repo/metrics';
+import { metrics } from '@farzoom/metrics-front-lib';
 
 metrics.startAction('LOAD_TASKS');
 

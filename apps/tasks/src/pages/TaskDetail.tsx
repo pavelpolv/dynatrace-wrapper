@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, Descriptions, Spin, Alert, Button, Tag } from 'antd';
 import { useParams, useHistory } from 'react-router-dom';
 import { ArrowLeftOutlined } from '@ant-design/icons';
-import { apiClient, Task } from '@repo/shared';
+import { apiClient, Task } from '@farzoom/shared';
 import 'antd/dist/antd.css';
 
 export const TaskDetail: React.FC = () => {

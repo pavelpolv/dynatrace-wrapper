@@ -1,8 +1,8 @@
 {
-  "name": "@repo/metrics",
+  "name": "@farzoom/metrics-front-lib",
   "version": "0.3.0",
   "private": true,
-  "description": "Dynatrace metrics package for microfrontend architecture with strict TypeScript typing",
+  "description": "Metrics front library for microfrontend architecture with strict TypeScript typing",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

@@ -2,7 +2,7 @@
 
 ## Что было реализовано
 
-### 1. Пакет @repo/metrics
+### 1. Пакет @farzoom/metrics
 
 Полнофункциональный пакет для работы с Dynatrace метриками:
 
@@ -140,7 +140,7 @@ dynatrace/
 ### В любом месте приложения
 
 ```typescript
-import { metrics } from '@repo/metrics';
+import { metrics } from '@farzoom/metrics-front-lib';
 
 // Начать действие
 metrics.startAction('LOAD_DATA', 'xhr');
@@ -158,7 +158,7 @@ try {
 
 ```typescript
 import { useEffect } from 'react';
-import { metrics } from '@repo/metrics';
+import { metrics } from '@farzoom/metrics-front-lib';
 
 export const MyComponent: React.FC = () => {
   useEffect(() => {
@@ -407,7 +407,7 @@ MetricsManager.initialize({
 
 ### Добавление метрик в другие микрофронтенды
 
-1. Добавить `@repo/metrics` в зависимости
+1. Добавить `@farzoom/metrics` в зависимости
 2. Импортировать `metrics` из пакета
 3. Использовать методы `startAction`, `leaveAction`
 

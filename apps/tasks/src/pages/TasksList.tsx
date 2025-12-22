@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Spin, Alert, Button, Tag } from 'antd';
 import { useHistory } from 'react-router-dom';
-import { apiClient, Task } from '@repo/shared';
+import { apiClient, Task } from '@farzoom/shared';
 import 'antd/dist/antd.css';
-import { metrics, MetricsEventType } from "@repo/metrics";
+import { metrics, MetricsEventType } from "@farzoom/metrics-front-lib";
 
 export const TasksList: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);

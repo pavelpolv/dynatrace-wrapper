@@ -100,7 +100,7 @@ npm run lint
   - `/order/:id` - детальная страница заказа
 - API: JSONPlaceholder `/users`
 
-## Shared пакет (@repo/shared)
+## Shared пакет (@farzoom/shared)
 
 Содержит общий код для всех приложений:
 

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { Layout } from 'antd';
 import 'antd/dist/antd.css';
-import { MetricsManager, MetricsEventType } from '@repo/metrics';
+import { MetricsManager, MetricsEventType } from '@farzoom/metrics-front-lib';
 import ErrorBoundary from './components/ErrorBoundary';
 import { TasksPage } from './pages/TasksPage';
 import { OrdersPage } from './pages/OrdersPage';

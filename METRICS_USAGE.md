@@ -7,7 +7,7 @@
 В файле `apps/root/src/bootstrap.tsx` добавлена инициализация:
 
 ```typescript
-import { MetricsManager } from '@repo/metrics';
+import { MetricsManager } from '@farzoom/metrics-front-lib';
 
 // Инициализация метрик (один раз при старте приложения)
 MetricsManager.initialize({
@@ -79,7 +79,7 @@ Ready: true
 
 ```typescript
 // apps/tasks/src/pages/TasksList.tsx
-import { metrics } from '@repo/metrics';
+import { metrics } from '@farzoom/metrics-front-lib';
 
 export const TasksList: React.FC = () => {
   const [tasks, setTasks] = useState([]);
@@ -114,7 +114,7 @@ export const TasksList: React.FC = () => {
 
 ```typescript
 // apps/layout/src/components/Sidebar.tsx
-import { metrics } from '@repo/metrics';
+import { metrics } from '@farzoom/metrics-front-lib';
 
 export const Sidebar: React.FC = () => {
   const handleNavigation = (path: string) => {
@@ -141,7 +141,7 @@ export const Sidebar: React.FC = () => {
 ```typescript
 // apps/order/src/pages/OrderDetails.tsx
 import { useEffect } from 'react';
-import { metrics } from '@repo/metrics';
+import { metrics } from '@farzoom/metrics-front-lib';
 
 export const OrderDetails: React.FC<{ orderId: string }> = ({ orderId }) => {
   useEffect(() => {
@@ -284,7 +284,7 @@ window.__DYNATRACE_METRICS__.setEnabled(true);
 
 1. Проверьте что пакет установлен:
    ```bash
-   npm list @repo/metrics
+   npm list @farzoom/metrics
    ```
 
 2. Проверьте инициализацию:

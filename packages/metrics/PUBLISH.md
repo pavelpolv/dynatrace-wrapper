@@ -1,4 +1,4 @@
-# Инструкция по публикации @repo/metrics в npm
+# Инструкция по публикации @farzoom/metrics в npm
 
 ## Подготовка к публикации
 
@@ -8,7 +8,7 @@
 
 ```json
 {
-  "name": "@repo/metrics",
+  "name": "@farzoom/metrics-front-lib",
   "version": "0.3.0",
   "private": false,  // ← Измените на false
   ...
@@ -17,7 +17,7 @@
 
 ### 2. Выберите имя пакета
 
-Если имя `@repo/metrics` уже занято в npm, измените его на уникальное:
+Если имя `@farzoom/metrics` уже занято в npm, измените его на уникальное:
 
 ```json
 {
@@ -141,7 +141,7 @@ git push --follow-tags
 <script type="importmap">
   {
     "imports": {
-      "@repo/metrics": "https://esm.sh/@repo/metrics@0.3.0",
+      "@farzoom/metrics-front-lib": "https://esm.sh/@farzoom/metrics@0.3.0",
       "react": "https://esm.sh/react@17.0.2"
     }
   }
@@ -151,13 +151,13 @@ git push --follow-tags
 ### npm install
 
 ```bash
-npm install @repo/metrics
+npm install @farzoom/metrics
 ```
 
 ### ES Module import
 
 ```javascript
-import { metrics, MetricsManager } from '@repo/metrics';
+import { metrics, MetricsManager } from '@farzoom/metrics-front-lib';
 
 MetricsManager.initialize({
   appName: 'my-app',
@@ -196,7 +196,7 @@ npm publish --access public
 
 Убедитесь, что:
 1. Вы залогинены: `npm whoami`
-2. Имя пакета не занято: https://www.npmjs.com/package/@repo/metrics
+2. Имя пакета не занято: https://www.npmjs.com/package/@farzoom/metrics
 3. Вы владелец организации @repo (если используете scoped имя)
 
 ## Чеклист перед публикацией

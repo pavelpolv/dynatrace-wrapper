@@ -17,7 +17,7 @@ apps/root/src/
 ```typescript
 import React, { Suspense, lazy, useEffect } from 'react';
 import { Spin } from 'antd';
-import { MetricsManager } from '@repo/metrics';
+import { MetricsManager } from '@farzoom/metrics-front-lib';
 
 // Обычный lazy импорт
 const TasksRoutes = lazy(() =>
@@ -56,7 +56,7 @@ export const TasksPage: React.FC = () => {
 ```typescript
 import React, { Suspense, lazy, useEffect } from 'react';
 import { Spin } from 'antd';
-import { MetricsManager } from '@repo/metrics';
+import { MetricsManager } from '@farzoom/metrics-front-lib';
 
 // Обычный lazy импорт
 const OrderRoutes = lazy(() =>
@@ -179,7 +179,7 @@ useEffect cleanup выполняется
 // UsersPage.tsx
 import React, { Suspense, lazy, useEffect } from 'react';
 import { Spin } from 'antd';
-import { MetricsManager } from '@repo/metrics';
+import { MetricsManager } from '@farzoom/metrics-front-lib';
 
 const UsersRoutes = lazy(() =>
   import('users/Routes').then(module => ({ default: module.UsersRoutes }))

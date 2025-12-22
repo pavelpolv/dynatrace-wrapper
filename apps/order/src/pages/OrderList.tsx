@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Spin, Alert, Button } from 'antd';
 import { useHistory } from 'react-router-dom';
-import { apiClient, Order } from '@repo/shared';
+import { apiClient, Order } from '@farzoom/shared';
 import 'antd/dist/antd.css';
 
 export const OrderList: React.FC = () => {

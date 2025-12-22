@@ -1,6 +1,6 @@
 import React, { Component, ReactNode, Suspense } from 'react';
 import { Result, Spin } from 'antd';
-import { metrics, MetricsEventType } from '@repo/metrics';
+import { metrics, MetricsEventType } from '@farzoom/metrics-front-lib';
 
 interface Props {
   children: ReactNode;

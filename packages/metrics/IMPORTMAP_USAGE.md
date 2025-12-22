@@ -1,6 +1,6 @@
-# Использование @repo/metrics через Import Map
+# Использование @farzoom/metrics через Import Map
 
-Пакет `@repo/metrics` теперь собирается как ESM модуль и готов к использованию через import-map для CDN.
+Пакет `@farzoom/metrics` теперь собирается как ESM модуль и готов к использованию через import-map для CDN.
 
 ## Что изменилось
 
@@ -76,7 +76,7 @@ npm publish --access public
   <script type="importmap">
     {
       "imports": {
-        "@repo/metrics": "https://unpkg.com/@repo/metrics@0.3.0/dist/index.js",
+        "@farzoom/metrics-front-lib": "https://unpkg.com/@farzoom/metrics@0.3.0/dist/index.js",
         "react": "https://esm.sh/react@17.0.2"
       }
     }
@@ -84,7 +84,7 @@ npm publish --access public
 </head>
 <body>
   <script type="module">
-    import { metrics, MetricsManager } from '@repo/metrics';
+    import { metrics, MetricsManager } from '@farzoom/metrics-front-lib';
 
     // Инициализация
     MetricsManager.initialize({
@@ -107,7 +107,7 @@ npm publish --access public
 <script type="importmap">
   {
     "imports": {
-      "@repo/metrics": "https://esm.sh/@repo/metrics@0.3.0",
+      "@farzoom/metrics-front-lib": "https://esm.sh/@farzoom/metrics@0.3.0",
       "react": "https://esm.sh/react@17.0.2"
     }
   }
@@ -120,7 +120,7 @@ npm publish --access public
 <script type="importmap">
   {
     "imports": {
-      "@repo/metrics": "https://cdn.jsdelivr.net/npm/@repo/metrics@0.3.0/dist/index.js",
+      "@farzoom/metrics-front-lib": "https://cdn.jsdelivr.net/npm/@farzoom/metrics@0.3.0/dist/index.js",
       "react": "https://esm.sh/react@17.0.2"
     }
   }
@@ -131,7 +131,7 @@ npm publish --access public
 
 ```javascript
 // В любом микрофронтенде
-import { metrics } from '@repo/metrics';
+import { metrics } from '@farzoom/metrics-front-lib';
 
 // Метрики уже инициализированы в root приложении
 metrics.startAction('LOAD_TASKS');
@@ -153,8 +153,8 @@ try {
 Типы автоматически доступны при использовании пакета из npm:
 
 ```typescript
-import { metrics, MetricsManager, MetricsManagerConfig } from '@repo/metrics';
-import type { UserAction, PageLoadMetrics } from '@repo/metrics';
+import { metrics, MetricsManager, MetricsManagerConfig } from '@farzoom/metrics-front-lib';
+import type { UserAction, PageLoadMetrics } from '@farzoom/metrics-front-lib';
 
 // Полная поддержка типов
 const config: MetricsManagerConfig = {

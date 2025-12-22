@@ -1,5 +1,5 @@
 {
-  "name": "@repo/shared",
+  "name": "@farzoom/shared",
   "version": "0.0.0",
   "private": true,
   "main": "./src/index.ts",

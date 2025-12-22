@@ -1,5 +1,5 @@
 /**
- * @repo/metrics - Пакет для работы с Dynatrace метриками в микрофронтенд архитектуре
+ * @farzoom/metrics-front-lib - Пакет для работы с метриками в микрофронтенд архитектуре
  *
  * Основные возможности:
  * - Типобезопасная обёртка над dtrum API
@@ -9,7 +9,7 @@
  *
  * @example
  * // Инициализация (один раз в root приложении)
- * import { MetricsManager } from '@repo/metrics';
+ * import { MetricsManager } from '@farzoom/metrics-front-lib';
  *
  * MetricsManager.initialize({
  *   environment: 'dev',
@@ -18,7 +18,7 @@
  *
  * @example
  * // Использование объекта metrics (рекомендуемый способ)
- * import { metrics } from '@repo/metrics';
+ * import { metrics } from '@farzoom/metrics-front-lib';
  *
  * // Начать действие
  * metrics.startAction('CREATE_TASK');

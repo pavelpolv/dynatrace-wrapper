@@ -1,5 +1,5 @@
 import React, { lazy, useEffect } from 'react';
-import { MetricsManager, MetricsEventType } from '@repo/metrics';
+import { MetricsManager, MetricsEventType } from '@farzoom/metrics-front-lib';
 import ErrorBoundary from '../components/ErrorBoundary';
 
 // Обычный lazy импорт
