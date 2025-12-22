@@ -31,7 +31,7 @@ const getMetricsManager = (): MetricsManager | null => {
  *
  * Использование:
  * ```typescript
- * import { metrics } from '@repo/metrics';
+ * import { metrics } from '@farzoom/metrics-front-lib';
  *
  * metrics.startAction('CREATE_TASK');
  * try {
@@ -50,7 +50,7 @@ export const metrics = {
    * @param actionName - Название действия
    * @param actionType - Тип действия (xhr, load, custom)
    */
-  startAction(actionName: string, actionType?: string): void {
+  startAction(actionName: MetricsEventType, actionType?: string): void {
     const manager = getMetricsManager();
     if (manager) {
       manager.startAction(actionName, actionType);
@@ -62,7 +62,7 @@ export const metrics = {
    *
    * @param actionName - Название действия
    */
-  leaveAction(actionName: string): void {
+  leaveAction(actionName: MetricsEventType): void {
     const manager = getMetricsManager();
     if (manager) {
       manager.leaveAction(actionName);
@@ -128,7 +128,7 @@ export const metrics = {
    * @param actionName - Название действия
    * @returns true если действие активно
    */
-  isActionActive(actionName: string): boolean {
+  isActionActive(actionName: MetricsEventType): boolean {
     const manager = getMetricsManager();
     return manager ? manager.isActionActive(actionName) : false;
   },
@@ -160,7 +160,7 @@ export const metrics = {
    * @returns true если свойства успешно добавлены
    */
   addActionProperties(
-    actionName: string,
+    actionName: MetricsEventType,
     properties: {
       javaLong?: Record<string, number>;
       date?: Record<string, Date>;
@@ -177,9 +177,9 @@ export const metrics = {
    *
    * @returns Массив названий активных действий
    */
-  getActiveActions(): string[] {
+  getActiveActions(): MetricsEventType[] {
     const manager = getMetricsManager();
-    return manager ? manager.getActiveActions() : [];
+    return manager ? manager.getActiveActions() : ([] as MetricsEventType[]);
   },
 
   /**

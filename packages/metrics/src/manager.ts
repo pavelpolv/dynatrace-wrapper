@@ -18,7 +18,7 @@ export class MetricsManager {
   private isEnabled: boolean;
 
   // Хранилище активных действий: actionName -> { actionId, startTime }
-  private activeActions: Map<string, { actionId: number; startTime: number }> = new Map();
+  private activeActions: Map<MetricsEventType, { actionId: number; startTime: number }> = new Map();
 
   private constructor(config: MetricsManagerConfig) {
     this.config = config;
@@ -100,7 +100,7 @@ export class MetricsManager {
    * @param actionName - Название действия
    * @param actionType - Тип действия (load, xhr, custom)
    */
-  startAction(actionName: string, actionType?: string): void {
+  startAction(actionName: MetricsEventType, actionType?: string): void {
     if (!this.isEnabled) return;
 
     // Проверяем, не запущено ли уже это действие
@@ -127,7 +127,7 @@ export class MetricsManager {
    *
    * @param actionName - Название действия
    */
-  leaveAction(actionName: string): void {
+  leaveAction(actionName: MetricsEventType): void {
     if (!this.isEnabled) return;
 
     const actionData = this.activeActions.get(actionName);
@@ -152,7 +152,7 @@ export class MetricsManager {
    * @param actionName - Название действия
    * @returns true если действие активно
    */
-  isActionActive(actionName: string): boolean {
+  isActionActive(actionName: MetricsEventType): boolean {
     return this.activeActions.has(actionName);
   }
 
@@ -185,7 +185,7 @@ export class MetricsManager {
    * @returns true если свойства успешно добавлены
    */
   addActionProperties(
-    actionName: string,
+    actionName: MetricsEventType,
     properties: {
       javaLong?: Record<string, number>;
       date?: Record<string, Date>;
@@ -292,7 +292,7 @@ export class MetricsManager {
    *
    * @returns Массив названий активных действий
    */
-  getActiveActions(): string[] {
+  getActiveActions(): MetricsEventType[] {
     return Array.from(this.activeActions.keys());
   }
 
