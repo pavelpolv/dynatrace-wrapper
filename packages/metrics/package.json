@@ -21,7 +21,7 @@
   "scripts": {
     "build": "node build.mjs",
     "typecheck": "tsc --noEmit",
-    "dev": "tsc --watch --noEmit",
+    "dev": "node dev.mjs",
     "clean": "rimraf dist"
   },
   "peerDependencies": {
